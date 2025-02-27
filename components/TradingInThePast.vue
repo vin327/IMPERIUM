@@ -13,7 +13,7 @@
                     <div class="trading-in-the-past-bg-card">
                         <div class="trading-in-the-past-card">
                             <div class="bg-ellipse">
-                                <img style="width: 36px; height: 36px;" src="../assets/img/icon-income.png" alt="">
+                                <img style="width: 36px; height: 36px;" src="@/assets/img/icon-income.png" alt="">
                             </div>
                             <p class="card-1-text">Большие доходы</p>
                             <p class="card-1-under-text">Профессиональные трейдеры могут увеличивать депозит на 30%, 50% и даже 100% за месяц с минимальными рисками    </p>
