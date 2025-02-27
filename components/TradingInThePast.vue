@@ -7,7 +7,7 @@
             </div>
             <div class="trading-in-the-past-content">
                 <div class="trading-in-the-past-img">
-                    <img src="assets/img/trading-in-the-past-img.png" alt="">
+                    <img src="../assets/img/trading-in-the-past-img.png" alt="">
                 </div>
                 <div class="trading-in-the-past-card-content">
                     <div class="trading-in-the-past-bg-card">
