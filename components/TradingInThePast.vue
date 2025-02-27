@@ -56,15 +56,6 @@
 </template>
 
 <script>
-import iconIncome from '@/assets/img/icon-income.png'
-
-export default {
-  setup() {
-    return {
-      iconIncome
-    }
-  }
-}
 </script>
 
 <style lang="scss" scoped>
