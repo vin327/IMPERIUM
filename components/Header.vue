@@ -15,10 +15,12 @@
             <li>
                 <NuxtLink to="/" class="text-btn">Обратная связь</NuxtLink>
             </li>
-            <div class="btn-login">
-                <img class="btn-login-img" src="assets/img/icon-login.png" alt="">
-                <button class="btn-login-text">Вход</button>
-            </div>
+            <NuxtLink to="/login" class="">
+                <div class="btn-login">
+                    <img class="btn-login-img" src="assets/img/icon-login.png" alt="">
+                    <button class="btn-login-text">Вход</button>
+                </div>
+            </NuxtLink>
             </ul>
         </div>
     </div>
