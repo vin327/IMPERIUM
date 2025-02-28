@@ -4,8 +4,9 @@
 }
 .background {
     width: 100%;
-    height: 7000px;
+    height: auto;
     background-image: url(../img/background.jpeg);
+    background-size: cover;
     background-repeat: no-repeat;
 }
 .text-btn {
@@ -13,6 +14,7 @@
     font-family: Montserrat, sans-serif;
     font-size: 13px;
     font-weight: 500;
+    cursor: pointer;
     line-height: 16px;
     letter-spacing: 0%;
     text-align: left;
@@ -43,6 +45,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
     width: 103px;
     height: 37px;
     border-radius: 10px;
@@ -53,8 +56,10 @@ button {
 .btn-login-img {
     width: 16px;
     height: 17px;
+    cursor: pointer;
 }
 .btn-login-text {
+    cursor: pointer;
     color: rgb(255, 255, 255);
     font-family: Montserrat, sans-serif;
     font-size: 13px;
@@ -72,6 +77,8 @@ button {
     gap: 30px;
 }
 .create-acc-conteiner {
+    display: flex;
+    justify-content: center;
     margin: 131px 0 0 0;
 }
 .create-acc-content {
@@ -103,6 +110,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
     width: 212px;
     height: 50px;
     border-radius: 15px;
@@ -111,6 +119,7 @@ button {
     background: linear-gradient(0.00deg, rgb(44, 144, 247) -24.363%,rgb(5, 192, 204) 118.272%);
 }
 .create-acc-btn-text {
+    cursor: pointer;
     color: rgb(255, 255, 255);
     font-family: Montserrat, sans-serif;
     font-size: 15px;
@@ -359,6 +368,7 @@ button {
 }
 .trading-in-the-past-content {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 89.98px;
     margin: 61px 0 0 0;
@@ -385,16 +395,22 @@ button {
     width: 682px;
     height: 690px;
 }
+.trading-in-the-past-footer-conteiner {
+    display: flex;
+    justify-content: center;
+
+}
 .trading-in-the-past-footer {
     display: flex;
     justify-content: flex-end;
-    margin: 50px 0 0 0;
+    margin: 50px 153px 0 0;
+    width: 1174px;
 }
 .trading-in-the-past-footer-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 510px 0 0;
+    cursor: pointer;
     width: 365px;
     height: 56px;
     border-radius: 15px;
@@ -403,11 +419,221 @@ button {
     background: linear-gradient(0.00deg, rgb(44, 144, 247) -24.363%,rgb(5, 192, 204) 118.272%);
 }
 .trading-in-the-past-footer-btn-text {
+    cursor: pointer;
     color: rgb(255, 255, 255);
     font-family: Montserrat, sans-serif;
     font-size: 15px;
     font-weight: 500;
     line-height: 167.3%;
+    letter-spacing: 0%;
+    text-align: left;
+}
+.feedback-conteiner {
+    display: flex;
+    justify-content: center;
+    margin: 98px 0 0 0;
+}
+.feedback-conteiner-bg {
+    width: 1218px;
+    height: 599px;
+    border-radius: 20px;
+    box-shadow: inset 0px 1px 2px 0px rgba(239, 232, 232, 0.6);
+    backdrop-filter: blur(30px);
+    background: rgba(255, 255, 255, 0.06);
+    margin: 0 0 100px 0
+}
+.feedback-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 80px 0 0 0;
+}
+.feedback-text {
+    color: rgb(255, 255, 255);
+    font-family: Montserrat, sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 167.3%;
+    letter-spacing: 0%;
+    text-align: left;
+}
+.feedback-header-text {
+    width: 745px;
+    height: 68px;
+    color: rgb(255, 255, 255);
+    font-family: Montserrat, sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 170%;
+    letter-spacing: 0%;
+    text-align: center;
+}
+.feedback-content-data {
+    display: flex;
+    justify-content: center;
+    gap: 33px;
+    margin: 40px 0 0 0;
+}
+.feedback-input-data {
+    padding-left: 27px;
+    border-radius: 15px;
+    box-shadow: inset 0px 1px 2px 0px rgba(239, 232, 232, 0.6);
+    backdrop-filter: blur(3px);
+    background: rgba(255, 255, 255, 0.06);
+    width: 423px;
+    height: 56px;
+    outline: none;
+    background-color: transparent;
+    /* стили текста */
+    color: rgb(255, 255, 255);
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 167.3%;
+    letter-spacing: 0%;
+    text-align: left;
+}
+input {
+    border: none;
+}
+.feedback-input-data::placeholder {
+    color: rgb(220, 220, 220);
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 167.3%;
+    letter-spacing: 0%;
+    text-align: left;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+.feedback-input-data.placeholder-hidden::placeholder {
+    opacity: 0;
+}
+.feedback-content-message {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 0 0;
+}
+.feedback-input-message {
+    padding-left: 27px;
+    border-radius: 15px;
+    box-shadow: inset 0px 1px 2px 0px rgba(239, 232, 232, 0.6);
+    backdrop-filter: blur(3px);
+    background: rgba(255, 255, 255, 0.06);
+    width: 906px;
+    height: 106px;
+    outline: none;
+    background-color: transparent;
+    /* стили текста */
+    color: rgb(255, 255, 255);
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 167.3%;
+    letter-spacing: 0%;
+    text-align: left;
+}
+.feedback-input-message::placeholder {
+    color: rgb(220, 220, 220);
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 167.3%;
+    letter-spacing: 0%;
+    text-align: left;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+.feedback-input-message.placeholder-hidden::placeholder {
+    opacity: 0;
+}
+.feedback-send-message {
+    display: flex;
+    justify-content: center;
+}
+.feedback-send-message-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 0 0;
+    width: 280px;
+    height: 56px;
+    cursor: pointer;
+    border-radius: 15px;
+    box-shadow: inset 0px 1px 2px 0px rgba(239, 232, 232, 0.6),inset 0px -4px 12px 0px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(5px);
+    background: linear-gradient(0.00deg, rgb(44, 144, 247) -24.363%,rgb(5, 192, 204) 118.272%);
+}
+.feedback-send-message-btn-text {
+    color: rgb(255, 255, 255);
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 167.3%;
+    letter-spacing: 0%;
+    text-align: left;
+    cursor: pointer;
+}
+.footer-container-bg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 211px;
+    background: rgb(23, 27, 45);
+}
+.footer-content-column-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15.74px;
+}
+.footer-content-column-1-text {
+    width: 235px;
+    height: 30px;
+    color: rgb(255, 255, 255);
+    font-family: Montserrat, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+.footer-content-column-2 {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 0 77px;
+    gap: 29px;
+}
+.footer-content-column-3 {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 0 40px;
+    gap: 29px;
+}
+.footer-content-column-3 {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 0 40px;
+    gap: 29px;
+}
+.footer-content-column-4 {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 0 325px;
+    gap: 29px;
+}
+.icons {
+    display: flex;
+    gap: 23.4px;
+}
+.footer-content-column-4-text {
+    color: rgb(255, 255, 255);
+    font-family: Montserrat, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 16px;
     letter-spacing: 0%;
     text-align: left;
 }

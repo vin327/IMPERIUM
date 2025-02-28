@@ -12,7 +12,9 @@
                 <div class="trading-in-the-past-card-content">
                     <div class="trading-in-the-past-bg-card">
                         <div class="trading-in-the-past-card">
-                            <div class="bg-ellipse"></div>
+                            <div class="bg-ellipse">
+                                <img style="width: 36px; height: 36px;" src="../assets/img/icon-comfort.png" alt="">
+                            </div>
                             <p class="card-1-text">Большие доходы</p>
                             <p class="card-1-under-text">Профессиональные трейдеры могут увеличивать депозит на 30%, 50% и даже 100% за месяц с минимальными рисками    </p>
                         </div>
@@ -46,9 +48,11 @@
                     </div>
                 </div>
             </div>
-            <div class="trading-in-the-past-footer">
-                <div class="trading-in-the-past-footer-btn">
-                    <button class="trading-in-the-past-footer-btn-text">Зарегистрироваться</button>
+            <div class="trading-in-the-past-footer-conteiner">
+                <div class="trading-in-the-past-footer">
+                    <div class="trading-in-the-past-footer-btn">
+                        <button class="trading-in-the-past-footer-btn-text">Зарегистрироваться</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,6 +62,6 @@
 <script>
 </script>
 
-<style lang="scss" scoped>
+<style>
 
 </style>
