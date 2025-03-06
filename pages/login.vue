@@ -33,6 +33,9 @@
                             </div>
                         </div>
                     </div>
+                    <form
+                    @submit.prevent="signIn"
+                    >
                     <div class="login-input-conteiner">
                         <div class="">
                             <input class="login-input-email"
@@ -40,6 +43,7 @@
                             :class="{ 'placeholder-hidden': isEmailFocused }"
                             @focus="onEmailFocus"
                             @blur="onEmailBlur"
+                            v-model="email"
                             type="email"
                             placeholder="Ваш email"
                           />
@@ -50,6 +54,7 @@
                             :class="{ 'placeholder-hidden': isPasswordFocused }"
                             @focus="onPasswordFocus"
                             @blur="onPasswordBlur"
+                            v-model="password"
                             type="password"
                             placeholder="Ваш пароль"
                           />
@@ -57,56 +62,111 @@
                     </div>
                     <div class="login-btn-conteiner">
                         <div class="login-btn">
-                            <button class="login-btn-text">Войти</button>
+                            <button type="submit" class="login-btn">Войти</button>
                         </div>
                         <p class="login-resset-password-text">Забыли пароль?</p>
+                    </div>
+                    <div class="error-container">
+                        <div v-if="successMsg" class="success-message">
+                            {{ successMsg }}
+                        </div>
+                        <div v-if="errorMsg" class="error-message">
+                            {{ errorMsg }}
+                        </div>
                     </div>
                     <div class="line-conteiner">
                         <div class="line-3"></div>
                     </div>
                     <div class="login-not-acc-conteiner">
                         <p class="login-not-acc-text">Еще нет аккаунта?</p>
-                        <p class="login-register-text">Зарегистрироваться</p>
+                        <NuxtLink
+                        to="register"><p class="login-register-text">Зарегистрироваться</p>
+                        </NuxtLink> 
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </template>
 
-<script>
-import Header from "#components";
+<script setup>
+import { Header } from '#components';
+import { ref } from 'vue';
 
-export default {
-    data() {
-        return {
-            activeButton: null,
-            isEmailFocused: false,
-            isPasswordFocused: false
-        }
-    },
-    methods: {
-        handleClick(button) {
-            this.activeButton = button;
-            console.log('Active button:', this.activeButton);
-        },
-        onEmailFocus() {
-            this.isEmailFocused = true;
-        },
-        onEmailBlur() {
-            if (this.$refs.emailInput.value === '') {
-                this.isEmailFocused = false;
-            }
-        },
-        onPasswordFocus() {
-            this.isPasswordFocused = true;
-        },
-        onPasswordBlur() {
-            if (this.$refs.passwordInput.value === '') {
-                this.isPasswordFocused = false;
-            }
-        }
+const activeButton = ref(null);
+const isEmailFocused = ref(false);
+const isPasswordFocused = ref(false);
+const emailInput = ref(null);
+const passwordInput = ref(null);
+
+const client = useSupabaseClient();
+const email = ref('');
+const password = ref('');
+const errorMsg = ref(null);
+const successMsg = ref(null);
+
+async function signIn() {
+  clearErrors();
+  try {
+    console.log('Attempting to sign in with:', email.value, password.value);
+    const { error } = await client.auth.signInWithPassword({
+      email: email.value,
+      password: password.value,
+    });
+    if (error) {
+      // Обрабатываем стандартные ошибки Supabase и переводим их на русский
+      switch (error.message) {
+        case 'Invalid login credentials':
+          errorMsg.value = 'Неверный email или пароль';
+          break;
+        case 'Email not confirmed':
+          errorMsg.value = 'Email не подтвержден';
+          break;
+        case 'Unable to validate email address: invalid format':
+          errorMsg.value = 'Неверный формат email';
+          break;
+        default:
+          errorMsg.value = 'Произошла ошибка при входе: ' + error.message;
+          break;
+      }
+      throw error;
     }
+    console.log('Sign-in successful, navigating to /profile');
+    navigateTo('/profile'); 
+  } catch (error) {
+    console.error('Ошибка входа:', error.message);
+  }
+}
+
+function handleClick(button) {
+  activeButton.value = button;
+  console.log('Active button:', activeButton.value);
+}
+
+function onEmailFocus() {
+  isEmailFocused.value = true;
+}
+
+function onEmailBlur() {
+  if (emailInput.value?.value === '') {
+    isEmailFocused.value = false;
+  }
+}
+
+function onPasswordFocus() {
+  isPasswordFocused.value = true;
+}
+
+function onPasswordBlur() {
+  if (passwordInput.value?.value === '') {
+    isPasswordFocused.value = false;
+  }
+}
+
+function clearErrors() {
+  errorMsg.value = null;
+  successMsg.value = null;
 }
 </script>
 
