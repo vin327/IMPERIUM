@@ -109,71 +109,104 @@
   import { Header } from '#components';
   import { ref } from 'vue';
   
+  
   const activeButton = ref(null);
   const isEmailFocused = ref(false);
   const isPasswordFocused = ref(false);
   const emailInput = ref(null);
   const passwordInput = ref(null);
   
+  const supabase = useSupabaseClient();
   const client = useSupabaseClient();
   const email = ref('');
   const password = ref('');
   const errorMsg = ref(null);
   const successMsg = ref(null);
-  const profileTypeError = ref(null); // Новая переменная для ошибки выбора профиля
+  const profileTypeError = ref(null); 
   
+
   async function signIn() {
-    clearErrors();
-  
-    // Проверка выбора типа профиля
-    if (!activeButton.value) {
-      profileTypeError.value = 'Пожалуйста, выберите тип профиля (пассивный заработок или публичный трейдинг)';
-      return;
-    }
-  
-    // Валидация полей
-    if (!email.value) {
-      errorMsg.value = 'Пожалуйста, введите электронную почту';
-      return;
-    }
-  
-    if (!password.value) {
-      errorMsg.value = 'Пожалуйста, введите пароль';
-      return;
-    }
-  
-    try {
-      console.log('Attempting to sign in with:', email.value, password.value);
-      const { error } = await client.auth.signInWithPassword({
-        email: email.value,
-        password: password.value,
-      });
-      if (error) {
-        // Обрабатываем стандартные ошибки Supabase и переводим их на русский
-        switch (error.message) {
-          case 'Invalid login credentials':
-            errorMsg.value = 'Неверный email или пароль';
-            break;
-          case 'Email not confirmed':
-            errorMsg.value = 'Email не подтвержден';
-            break;
-          case 'Unable to validate email address: invalid format':
-            errorMsg.value = 'Неверный формат email';
-            break;
-          default:
-            errorMsg.value = 'Произошла ошибка при входе: ' + error.message;
-            break;
-        }
-        throw error;
-      }
-      successMsg.value = 'Вход выполнен успешно';
-      console.log('Sign-in successful, navigating to /profile');
-      navigateTo('/profile_trading');
-    } catch (error) {
-      console.error('Ошибка входа:', error.message);
-    }
+  clearErrors();
+
+  if (!activeButton.value) {
+    profileTypeError.value = 'Пожалуйста, выберите тип профиля (пассивный заработок или публичный трейдинг)';
+    return;
   }
-  
+
+  if (!email.value) {
+    errorMsg.value = 'Пожалуйста, введите электронную почту';
+    return;
+  }
+
+  if (!password.value) {
+    errorMsg.value = 'Пожалуйста, введите пароль';
+    return;
+  }
+
+  try {
+    const { error } = await client.auth.signInWithPassword({
+      email: email.value,
+      password: password.value,
+    });
+
+    if (error) {
+      switch (error.message) {
+        case 'Invalid login credentials':
+          errorMsg.value = 'Неверный email или пароль';
+          break;
+        case 'Email not confirmed':
+          errorMsg.value = 'Email не подтвержден';
+          break;
+        case 'Unable to validate email address: invalid format':
+          errorMsg.value = 'Неверный формат email';
+          break;
+        default:
+          errorMsg.value = 'Произошла ошибка при входе: ' + error.message;
+          break;
+      }
+      throw error;
+    }
+
+    // Если авторизация успешна, получаем данные пользователя
+    const { data: { user } } = await client.auth.getUser();
+
+    if (user) {
+      const { data: userData, error: userError } = await client
+        .from('users')
+        .select('profile_type')
+        .eq('id', user.id)
+        .single();
+
+      if (userError) {
+        errorMsg.value = 'Ошибка получения данных пользователя: ' + userError.message;
+        await client.auth.signOut();
+        return;
+      }
+
+      if (userData.profile_type !== activeButton.value) {
+        errorMsg.value = 'Пожалуйста, выберите правильный профиль';
+        await client.auth.signOut(); // разлогиниваем пользователя
+        return; // и не переходим дальше
+      }
+
+      // Если тип профиля верный:
+      successMsg.value = 'Вход выполнен успешно';
+
+      // Переход, в зависимости от профиля
+      if (activeButton.value === 'trading') {
+        navigateTo('/profile_trading');
+      } else if (activeButton.value === 'passive') {
+        navigateTo('/profile_passive');
+      }
+    } else {
+      errorMsg.value = 'Пользователь не найден';
+      await client.auth.signOut();
+    }
+
+  } catch (error) {
+    console.error('Ошибка входа:', error.message);
+  }
+}
   function handleClick(button) {
     activeButton.value = button;
     console.log('Active button:', activeButton.value);

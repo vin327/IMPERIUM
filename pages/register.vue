@@ -200,14 +200,15 @@
         throw error;
       }
   
-      successMsg.value = 'На ваш email отправлено письмо с подтверждением';
+      successMsg.value = '';
+      navigateTo('/login');
       errorMsg.value = null;
       passwordMismatch.value = null;
       profileTypeError.value = null;
     } catch (error) {
       console.error('Ошибка регистрации:', error.message);
     }
-  }
+}
   
   function handleClick(button) {
     activeButton.value = button;
