@@ -148,11 +148,6 @@
       return;
     }
 
-    if (!email.value === !email.value) {
-        errorMsg.value = 'Данный email уже зарегистрирован';
-        return;
-    }
-
     if (!email.value) {
       errorMsg.value = 'Пожалуйста, введите электронную почту';
       return;

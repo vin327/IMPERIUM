@@ -202,7 +202,7 @@
   function clearErrors() {
     errorMsg.value = null;
     successMsg.value = null;
-    profileTypeError.value = null; // Очищаем ошибку выбора профиля
+    profileTypeError.value = null; 
   }
   </script>
 
