@@ -8,4 +8,10 @@ export default defineNuxtConfig({
     redirect: false
   },
   pages: true,
+  runtimeConfig: {
+    public: {
+      supabaseUrl: process.env.NUXT_SUPABASE_URL,
+      supabaseKey: process.env.NUXT_SUPABASE_KEY
+    }
+  },
 })

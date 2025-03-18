@@ -642,7 +642,7 @@ input {
 }
 .bg-login {
     width: 100%;
-    height: 1920px;
+    height: 100vh;
     background-image: url(../img/bg-auth.png);
     background-repeat: no-repeat;
 }
@@ -918,7 +918,7 @@ input {
 }
 .bg-register {
     width: 100%;
-    height: 1920px;
+    height: 100vh;
     background-image: url(../img/bg-auth.png);
     background-repeat: no-repeat;
 }
@@ -1215,4 +1215,77 @@ input {
     line-height: 140%;
     letter-spacing: 0%;
     text-align: left;
+}
+.bg-profile-trading {
+    width: 100%;
+    height: 100vh;
+    background-image: url(../img/bg-trader_cabinet.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.profile-header-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 81px; 
+}
+.profile-header-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+}
+.type-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 84px;
+    height: 30px;
+    margin: 0 0 0 850px;
+    box-sizing: border-box;
+    border-radius: 7px;
+    border: solid rgb(115, 255, 242);;
+    border-width: 2px;
+}
+.type-profile-text {
+    color: rgb(115, 255, 242);
+    font-family: Montserratm, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+.balance {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.balance-text {
+    color: rgb(255, 255, 255);
+    font-family: Montserrat, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+.drop-down-language {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.drop-down-language-text {
+    color: rgb(255, 255, 255);
+    font-family: Montserrat, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+.drop-down-profile {
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
